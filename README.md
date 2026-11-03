@@ -5,6 +5,8 @@ the real Sun, with hourly clouds, radar, severe weather, lightning, tropical sto
 earthquakes, aurora, satellites and rocket launches. It faces your home by default, and
 shows times on your clock and readings in your units.
 
+![A Home Assistant dashboard with livex.earth cards: the globe facing home, radar over North America, the ISS tracked, tonight's sky, and a view with its labels on](https://raw.githubusercontent.com/rdmiller/ha-livex/main/docs/dashboard.jpg)
+
 The card is the livex.earth page in a frame. Every key in the card's YAML is one of livex's URL
 parameters, so a dashboard can show any view livex.earth can.
 
