@@ -3,6 +3,8 @@
 # a dashboard of example cards (lovelace.json), and finishes its onboarding so the page opens
 # straight to the dashboard. Its config lives in a scratch folder (first argument, or
 # ./.ha-dev), so a run never touches a real Home Assistant. `docker rm -f livex-card-ha` ends it.
+# LIVEX_BASE points every card at another livex (`base_url`), such as a local build of a change
+# not yet on livex.earth: LIVEX_BASE=http://localhost:4174/ bash dev/ha/up.sh
 set -euo pipefail
 
 here=$(cd "$(dirname "$0")" && pwd)
@@ -19,7 +21,16 @@ origin=http://localhost:$port
 
 mkdir -p "$config/.storage"
 cp "$here/configuration.yaml" "$config/configuration.yaml"
-cp "$here/lovelace.json" "$config/.storage/lovelace"
+if [ -n "${LIVEX_BASE:-}" ]; then
+  sed "s#\"type\": \"custom:livex-card\"#&, \"base_url\": \"$LIVEX_BASE\"#g" "$here/lovelace.json" > "$config/.storage/lovelace"
+else
+  cp "$here/lovelace.json" "$config/.storage/lovelace"
+fi
+# Home Assistant 2026.10 moves the default dashboard to lovelace.lovelace on its first start (and
+# reads only that after), so a rerun over the same folder writes it there too.
+if [ -f "$config/.storage/lovelace.lovelace" ]; then
+  sed 's#"key": "lovelace"#"key": "lovelace.lovelace"#' "$config/.storage/lovelace" > "$config/.storage/lovelace.lovelace"
+fi
 docker rm -f livex-card-ha >/dev/null 2>&1 || true
 docker run -d --name livex-card-ha -p $port:8123 \
   -v "$config:/config" -v "$repo/dist:/config/www:ro" "$image" >/dev/null

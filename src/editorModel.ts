@@ -59,7 +59,7 @@ export const LAYER_FIELDS: Field[] = [
     selector: choice(['tracked', 'Only the tracked one'], ['all', 'All'], ['featured', 'Named only'], ['0', 'None']),
   },
   toggle('borders', 'Borders', false),
-  toggle('markers', 'City names', true),
+  toggle('markers', 'City names', false),
   toggle('lights', 'Night lights', true),
 ];
 

@@ -6,7 +6,7 @@ describe('formData', () => {
     const data = formData({ type: 'custom:livex-card' });
     expect(data).toMatchObject({
       view: 'fixed', mag: 1, clouds: true, borders: false, winds: '0', clock: 'local', interactive: true,
-      embed: true, label: '0', callouts: false, sats: 'tracked', logo: true,
+      embed: true, label: '0', callouts: false, sats: 'tracked', logo: true, markers: false,
     });
     expect(data).not.toHaveProperty('lat');
   });

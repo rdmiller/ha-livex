@@ -11,8 +11,10 @@
           "path": "masonry",
           "cards": [
             { "type": "custom:livex-card" },
-            { "type": "custom:livex-card", "title": "Radar and storms", "mag": 2.6, "aspect_ratio": "16:9", "lightning": false, "label": 0 },
-            { "type": "custom:livex-card", "title": "Sky tonight", "view": "sky", "tonight": 1, "interactive": false }
+            { "type": "custom:livex-card", "title": "Radar and storms", "mag": 2.6, "aspect_ratio": "16:9" },
+            { "type": "custom:livex-card", "title": "ISS", "view": "track", "track": "iss" },
+            { "type": "custom:livex-card", "title": "Sky tonight", "view": "sky", "tonight": 1, "interactive": false },
+            { "type": "custom:livex-card", "title": "Hazards, labelled", "mag": 1.6, "callouts": true, "label": "short", "logo": false }
           ]
         },
         {

@@ -48,6 +48,7 @@ with commas. Where the YAML doesn't say, the card asks for livex's embedded view
   satellites but the one `view: track` follows. Set `label`, `callouts`, `sats` or `satshow`
   to have them back, or `embed: false` for the full page. The wordmark and "All credits" open
   the view on livex.earth in a new tab.
+- **`markers`:** `0`, no city names. `markers: true` brings them back.
 
 And it fills in from Home Assistant:
 
@@ -77,7 +78,8 @@ The ones a dashboard most often wants:
 | `view` | `fixed` (over a place), `sky` (looking up from `lat`, `lon`), `sunrel` (following the Sun), `orbit`, `moon`, `track` | `fixed` |
 | `mag` | size, 0.05–500 (2.6 shows a region, 10 a state) | `1` |
 | `track` | for `view: track`: `iss`, `tiangong`, a NORAD number, or `launch` | `iss` |
-| `clouds`, `radar`, `severe`, `lightning`, `storms`, `fires`, `quakes`, `tsunami`, `aurora`, `events`, `snow`, `launches`, `markers`, `lights` | layers on or off | on |
+| `clouds`, `radar`, `severe`, `lightning`, `storms`, `fires`, `quakes`, `tsunami`, `aurora`, `events`, `snow`, `launches`, `lights` | layers on or off | on |
+| `markers` | city names | off |
 | `borders`, `smoke`, `grid` | layers on or off | off |
 | `imagery` | `live` (satellite pictures by day), `daily` (yesterday's, zoomed in), `painted` | `daily` |
 | `winds` | `surface`, `jet` or `0`, as moving trails | `0` |

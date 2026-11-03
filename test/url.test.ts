@@ -9,13 +9,13 @@ const HOME = {
 describe('livexUrl', () => {
   it('faces the home, rounded to a tenth of a degree, in its units and clock', () => {
     expect(livexUrl({ type: 'custom:livex-card' }, HOME)).toBe(
-      'https://livex.earth/?lat=45&lon=-93.3&units=imperial&hours=12&clock=local&embed=1',
+      'https://livex.earth/?lat=45&lon=-93.3&units=imperial&hours=12&clock=local&markers=0&embed=1',
     );
   });
 
   it('passes every other key through as a parameter, in YAML order', () => {
     const url = new URL(livexUrl({ type: 'custom:livex-card', mag: 2.6, radar: false, winds: 'jet', satshow: ['iss', 'gps'] }));
-    expect([...url.searchParams]).toEqual([['mag', '2.6'], ['radar', '0'], ['winds', 'jet'], ['satshow', 'iss,gps'], ['clock', 'local'], ['embed', '1']]);
+    expect([...url.searchParams]).toEqual([['mag', '2.6'], ['radar', '0'], ['winds', 'jet'], ['satshow', 'iss,gps'], ['clock', 'local'], ['markers', '0'], ['embed', '1']]);
   });
 
   it("keeps the card's own keys and Home Assistant's out of the link", () => {
@@ -23,12 +23,12 @@ describe('livexUrl', () => {
       type: 'custom:livex-card', title: 'Globe', aspect_ratio: '16:9', height: '400px', interactive: false,
       grid_options: { rows: 4 }, visibility: [{ condition: 'screen' }], view_layout: { position: 'main' },
     });
-    expect(url).toBe('https://livex.earth/?clock=local&embed=1');
+    expect(url).toBe('https://livex.earth/?clock=local&markers=0&embed=1');
   });
 
   it("uses the YAML's own lat, lon, units, hours and clock over Home Assistant's", () => {
-    const params = livexParams({ type: 'x', lat: 60, lon: -100, units: 'metric', hours: '24', clock: 'utc', embed: false }, HOME);
-    expect(params).toEqual([['lat', '60'], ['lon', '-100'], ['units', 'metric'], ['hours', '24'], ['clock', 'utc'], ['embed', '0']]);
+    const params = livexParams({ type: 'x', lat: 60, lon: -100, units: 'metric', hours: '24', clock: 'utc', markers: true, embed: false }, HOME);
+    expect(params).toEqual([['lat', '60'], ['lon', '-100'], ['units', 'metric'], ['hours', '24'], ['clock', 'utc'], ['markers', '1'], ['embed', '0']]);
   });
 
   it("leaves the home out with home: false, or a lat or lon of the YAML's own", () => {
@@ -44,7 +44,7 @@ describe('livexUrl', () => {
   });
 
   it('takes a self-hosted base and rejects anything but http(s)', () => {
-    expect(livexUrl({ type: 'x', base_url: 'http://nas.local:8080/xearth/', clock: 'utc', embed: 1 })).toBe('http://nas.local:8080/xearth/?clock=utc&embed=1');
+    expect(livexUrl({ type: 'x', base_url: 'http://nas.local:8080/xearth/', clock: 'utc', markers: 0, embed: 1 })).toBe('http://nas.local:8080/xearth/?clock=utc&markers=0&embed=1');
     expect(() => livexUrl({ type: 'x', base_url: 'javascript:alert(1)' })).toThrow(/http or https/);
     expect(() => livexUrl({ type: 'x', base_url: 'not a url' })).toThrow(/isn't a URL/);
   });
