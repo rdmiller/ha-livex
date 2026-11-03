@@ -1,19 +1,29 @@
 # livex.earth card for Home Assistant
 
-A dashboard card showing [livex.earth](https://livex.earth/), the live globe: the Earth lit by
-the real Sun, with hourly clouds, radar, severe weather, lightning, tropical storms, fires,
-earthquakes, aurora, satellites and rocket launches. It faces your home by default, and
-shows times on your clock and readings in your units.
+A dashboard card showing [livex.earth](https://livex.earth/), the live globe: the Earth as it
+is right now, lit by the real Sun. Day and night divide it along the terminator as it sweeps
+across your home, the night side glows with city lights, and the Sun and Moon are marked where
+they are. Over it go hourly clouds, the aurora, satellites and rocket launches, and hazards
+from earthquakes to tropical storms. It faces your home by default, and shows times on your
+clock and readings in your units.
 
 ![A Home Assistant dashboard with livex.earth cards: the globe facing home, radar over North America, the ISS tracked, tonight's sky, and a view with its labels on](https://raw.githubusercontent.com/rdmiller/ha-livex/main/docs/dashboard.jpg)
 
-The card is the livex.earth page in a frame. Every key in the card's YAML is one of livex's URL
-parameters, so a dashboard can show any view livex.earth can.
+The card on its own is the globe facing your home, day and night wherever they fall right now:
 
 ```yaml
 type: custom:livex-card
-title: Weather near home
-mag: 2.6
+```
+
+The card is the livex.earth page in a frame, and every other key in its YAML is one of livex's
+URL parameters, so a dashboard can show any view livex.earth can. If your other cards already
+cover the weather, leave the globe to day and night:
+
+```yaml
+type: custom:livex-card
+title: Day and night
+radar: false
+severe: false
 lightning: false
 ```
 
