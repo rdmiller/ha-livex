@@ -1,6 +1,7 @@
 // The livex.earth link a card shows: every key in the card's YAML that isn't the card's own
 // becomes a URL parameter, so any view livex.earth can show, a dashboard can too, including
 // parameters added to livex after this card was released. Where the YAML is silent, the card
+// asks for livex's embedded view (just the globe; `embed: false` brings the full page back) and
 // fills in what Home Assistant already knows: the home's position, its units and its clock.
 
 export const DEFAULT_BASE = 'https://livex.earth/';
@@ -81,6 +82,7 @@ export function livexParams(config: LivexCardConfig, hass?: HassLike): [string, 
   const hours = hass?.locale?.time_format;
   if (!set.has('hours') && (hours === '12' || hours === '24')) out.push(['hours', hours]);
   if (!set.has('clock')) out.push(['clock', 'local']);
+  if (!set.has('embed')) out.push(['embed', '1']);
   return out;
 }
 

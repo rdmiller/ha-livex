@@ -40,7 +40,16 @@ Then add a card and pick **livex.earth**, or write `type: custom:livex-card` in 
 ## livex.earth's options
 
 Every other key goes into the page's URL: `true`/`false` become `1`/`0`, and a list is joined
-with commas. Where the YAML doesn't say, the card fills in from Home Assistant:
+with commas. Where the YAML doesn't say, the card asks for livex's embedded view:
+
+- **`embed`:** `1`: just the globe, the wordmark and the data credits, with no panels or
+  controls, and the globe still turns and zooms. It also makes livex's defaults quieter: no
+  status readout, no label cards beside hazards and launches (their markers stay), and no
+  satellites but the one `view: track` follows. Set `label`, `callouts`, `sats` or `satshow`
+  to have them back, or `embed: false` for the full page. The wordmark and "All credits" open
+  the view on livex.earth in a new tab.
+
+And it fills in from Home Assistant:
 
 - **`lat`, `lon`:** your home, rounded to a tenth of a degree (about 10 km), in the views where
   they name a place (`fixed`, the default, and `sky`).
@@ -63,7 +72,7 @@ winds: surface
 
 The ones a dashboard most often wants:
 
-| Key | Meaning | livex's default |
+| Key | Meaning | Default, embedded |
 |---|---|---|
 | `view` | `fixed` (over a place), `sky` (looking up from `lat`, `lon`), `sunrel` (following the Sun), `orbit`, `moon`, `track` | `fixed` |
 | `mag` | size, 0.05–500 (2.6 shows a region, 10 a state) | `1` |
@@ -73,8 +82,9 @@ The ones a dashboard most often wants:
 | `imagery` | `live` (satellite pictures by day), `daily` (yesterday's, zoomed in), `painted` | `daily` |
 | `winds` | `surface`, `jet` or `0`, as moving trails | `0` |
 | `waves`, `currents` | moving trails over the sea | `0` |
-| `sats` | `all`, `featured` (named only) or `0` | `all` |
-| `label` | the status readout: `1`, `short` or `0` | `short` |
+| `sats` | `all`, `featured` (named only) or `0` | only the tracked one |
+| `label` | the status readout: `1`, `short` or `0` | `0` |
+| `callouts` | the label cards beside hazards and launches (a quake's magnitude and depth, a warning's area) | `0` |
 | `latest`, `follow` | `latest: 1` shows the event log; with `follow` the globe turns to each new quake, launch, storm or alert | `0` |
 | `tonight` | with `view: sky`, start the clock at tonight's dusk, looking at the Moon or the brightest planet | `0` |
 | `sharp` | the globe's sharpness: `full`, `balanced` or `saver` | `full` |
@@ -85,8 +95,7 @@ The ones a dashboard most often wants:
 The globe is drawn with WebGL2. At rest it's redrawn only as often as something on it moves
 half a pixel, about once a second at the default zoom, but moving trails (`winds`, `waves`,
 `currents`) and a close zoom redraw it every frame, which a small tablet left on all day may
-find heavy. `sharp: saver` draws it at one pixel per CSS pixel, and `label: 0` drops the
-readout. Any browser with WebGL2 shows it, including the Home Assistant apps on Android and on
+find heavy. `sharp: saver` draws it at one pixel per CSS pixel. Any browser with WebGL2 shows it, including the Home Assistant apps on Android and on
 iOS 15 or later.
 
 ## Privacy

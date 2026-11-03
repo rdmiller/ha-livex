@@ -1,5 +1,5 @@
-// What the visual editor offers: the options most dashboards want, each with livex's own default,
-// so the form shows what the globe will actually do. A field set back to its default leaves the
+// What the visual editor offers: the options most dashboards want, each with livex's own default
+// for an embedded globe (embed=1, which the card asks for), so the form shows what it will do. A field set back to its default leaves the
 // YAML, which keeps a card's config down to what it changes. Everything else stays YAML only.
 
 import type { LivexCardConfig } from './url';
@@ -14,7 +14,7 @@ export interface Field {
   name: string;
   label: string;
   selector: Selector;
-  /** What livex (or the card) does when the key is absent; undefined: nothing until it's set. */
+  /** What livex (or the card) does when the key is absent; undefined: nothing until it's set. A value livex doesn't take (`tracked`) only stands for the key's absence. */
   default?: string | number | boolean;
   helper?: string;
 }
@@ -53,17 +53,22 @@ export const LAYER_FIELDS: Field[] = [
   toggle('smoke', 'Smoke', false),
   { name: 'winds', label: 'Winds', default: '0', selector: choice(['0', 'Off'], ['surface', 'Surface'], ['jet', 'Jet stream']) },
   toggle('launches', 'Launches', true),
-  { name: 'sats', label: 'Satellites', default: 'all', selector: choice(['all', 'All'], ['featured', 'Named only'], ['0', 'None']) },
+  toggle('callouts', 'Hazard and launch labels', false),
+  {
+    name: 'sats', label: 'Satellites', default: 'tracked',
+    selector: choice(['tracked', 'Only the tracked one'], ['all', 'All'], ['featured', 'Named only'], ['0', 'None']),
+  },
   toggle('borders', 'Borders', false),
   toggle('markers', 'City names', true),
   toggle('lights', 'Night lights', true),
 ];
 
 export const DISPLAY_FIELDS: Field[] = [
-  { name: 'label', label: 'Status readout', default: 'short', selector: choice(['short', 'Short'], ['1', 'Full'], ['0', 'Off']) },
+  { name: 'label', label: 'Status readout', default: '0', selector: choice(['0', 'Off'], ['short', 'Short'], ['1', 'Full']) },
   { name: 'clock', label: 'Clock', default: 'local', selector: choice(['local', 'Local'], ['utc', 'UTC'], ['both', 'Both']) },
   { name: 'sharp', label: 'Sharpness', default: 'full', helper: 'Lower is easier on a wall tablet', selector: choice(['full', 'Full'], ['balanced', 'Balanced'], ['saver', 'Saver']) },
   toggle('interactive', 'Drag and click the globe', true),
+  { ...toggle('embed', 'Just the globe', true), helper: "Off: livex's full page, panels and controls and all" },
   { name: 'aspect_ratio', label: 'Aspect ratio', default: '1', helper: 'Like 16:9; a sections view sizes the card itself', selector: { text: {} } },
 ];
 
