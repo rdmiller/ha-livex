@@ -23,7 +23,7 @@
           "type": "sections",
           "max_columns": 4,
           "sections": [
-            { "type": "grid", "cards": [{ "type": "custom:livex-card", "winds": "jet", "borders": true }] },
+            { "type": "grid", "cards": [{ "type": "custom:livex-card", "title": "Weather near home", "mag": 2.6 }] },
             { "type": "grid", "cards": [{ "type": "custom:livex-card", "view": "track", "track": "iss", "grid_options": { "columns": 12, "rows": 4 } }] }
           ]
         }

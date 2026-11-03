@@ -12,8 +12,8 @@ parameters, so a dashboard can show any view livex.earth can.
 
 ```yaml
 type: custom:livex-card
+title: Weather near home
 mag: 2.6
-winds: jet
 lightning: false
 ```
 
