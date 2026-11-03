@@ -88,6 +88,7 @@ The ones a dashboard most often wants:
 | `latest`, `follow` | `latest: 1` shows the event log; with `follow` the globe turns to each new quake, launch, storm or alert | `0` |
 | `tonight` | with `view: sky`, start the clock at tonight's dusk, looking at the Moon or the brightest planet | `0` |
 | `sharp` | the globe's sharpness: `full`, `balanced` or `saver` | `full` |
+| `logo` | the livex.earth wordmark, bottom left; the data credits stay without it | on |
 | `hazmin` | the least serious hazard shown: `low`, `medium` or `high` | `low` |
 
 ## On a wall tablet

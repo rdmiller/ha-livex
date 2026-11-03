@@ -68,6 +68,7 @@ export const DISPLAY_FIELDS: Field[] = [
   { name: 'clock', label: 'Clock', default: 'local', selector: choice(['local', 'Local'], ['utc', 'UTC'], ['both', 'Both']) },
   { name: 'sharp', label: 'Sharpness', default: 'full', helper: 'Lower is easier on a wall tablet', selector: choice(['full', 'Full'], ['balanced', 'Balanced'], ['saver', 'Saver']) },
   toggle('interactive', 'Drag and click the globe', true),
+  toggle('logo', 'livex.earth logo', true),
   { ...toggle('embed', 'Just the globe', true), helper: "Off: livex's full page, panels and controls and all" },
   { name: 'aspect_ratio', label: 'Aspect ratio', default: '1', helper: 'Like 16:9; a sections view sizes the card itself', selector: { text: {} } },
 ];
