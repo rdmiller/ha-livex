@@ -19,11 +19,14 @@ lightning: false
 
 ## Installing
 
-[![Open your Home Assistant and add this repository to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rdmiller&repository=ha-livex&category=plugin)
+**HACS:** search HACS for **livex.earth card**, download it, and reload the browser. Or let
+the button open its page in your Home Assistant's HACS:
 
-**HACS:** the button above opens this repository in your Home Assistant's HACS. Or add it by
-hand: HACS → ⋮ → Custom repositories → `https://github.com/rdmiller/ha-livex`, type
-**Dashboard**. Then download **livex.earth card** and reload the browser.
+[![Open your Home Assistant and show this repository in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rdmiller&repository=ha-livex&category=plugin)
+
+If the search doesn't find it (an older HACS, or a store that hasn't refreshed yet), add it as
+a custom repository: HACS → ⋮ → Custom repositories → `https://github.com/rdmiller/ha-livex`,
+type **Dashboard**.
 
 **By hand:** download `livex-card.js` from the [latest release](https://github.com/rdmiller/ha-livex/releases/latest)
 into `config/www/`, then add it under Settings → Dashboards → ⋮ → Resources as
