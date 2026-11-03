@@ -1,0 +1,30 @@
+name: Release
+
+# A published release gets the built card attached, the file HACS installs. The tag must be
+# `v` + package.json's version, which the card logs in the browser console.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  asset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Tag matches package.json
+        run: test "${{ github.event.release.tag_name }}" = "v$(node -p "require('./package.json').version")"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - run: gh release upload "${{ github.event.release.tag_name }}" dist/livex-card.js --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}

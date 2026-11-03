@@ -1,0 +1,25 @@
+# A throwaway Home Assistant for trying the card (dev/ha/up.sh). The home is downtown
+# Minneapolis in US units, so the card's defaults show; anyone on this machine is let in
+# without a password.
+default_config:
+
+homeassistant:
+  name: livex-card dev
+  latitude: 44.98
+  longitude: -93.27
+  elevation: 260
+  unit_system: us_customary
+  time_zone: America/Chicago
+  country: US
+  currency: USD
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks: [127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16]
+      allow_bypass_login: true
+    - type: homeassistant
+
+lovelace:
+  resource_mode: yaml
+  resources:
+    - url: /local/livex-card.js
+      type: module

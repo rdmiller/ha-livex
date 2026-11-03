@@ -1,0 +1,19 @@
+{
+  "name": "ha-livex",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Home Assistant dashboard card showing livex.earth, the live globe",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}

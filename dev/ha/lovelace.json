@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "livex",
+      "views": [
+        {
+          "title": "Masonry",
+          "path": "masonry",
+          "cards": [
+            { "type": "custom:livex-card" },
+            { "type": "custom:livex-card", "title": "Radar and storms", "mag": 2.6, "aspect_ratio": "16:9", "lightning": false, "label": 0 },
+            { "type": "custom:livex-card", "title": "Sky tonight", "view": "sky", "tonight": 1, "interactive": false }
+          ]
+        },
+        {
+          "title": "Sections",
+          "path": "sections",
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
+            { "type": "grid", "cards": [{ "type": "custom:livex-card", "winds": "jet", "borders": true }] },
+            { "type": "grid", "cards": [{ "type": "custom:livex-card", "view": "track", "track": "iss", "grid_options": { "columns": 12, "rows": 4 } }] }
+          ]
+        }
+      ]
+    }
+  }
+}
