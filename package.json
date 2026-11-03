@@ -1,6 +1,6 @@
 {
   "name": "ha-livex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "A Home Assistant dashboard card showing livex.earth, the live globe",
   "license": "MIT",
