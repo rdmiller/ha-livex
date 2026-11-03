@@ -175,7 +175,7 @@ w.customCards ??= [];
 w.customCards.push({
   type: 'livex-card',
   name: 'livex.earth',
-  description: 'The live globe from livex.earth: clouds, radar, storms, fires, lightning and satellites, facing your home.',
+  description: 'The live globe from livex.earth, facing your home: day and night as they fall right now, city lights, clouds, the Moon and satellites.',
   preview: false,
   documentationURL: 'https://github.com/rdmiller/ha-livex',
 });
